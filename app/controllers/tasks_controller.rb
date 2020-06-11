@@ -25,12 +25,28 @@ class TasksController < ApplicationController
   end
   
   def edit
+    @task = Task.find(params[:id])
   end
 
   def update
+    @task = Task.find(params[:id])
+    
+    if @task.update(task_params)
+      flash[:success] = 'タスクが正常に更新されました'
+      redirect_to task_url
+    else
+      flash.now[:danger] = 'タスクは更新されませんでした'
+      render :new
+    end
   end
   
   def destroy
+    
+    @task = Task.find(params[:id])
+    @task.destroy
+    
+    flash[:success] = 'Taskは正常に削除されました'
+    redirect_to tasks_url
   end
   
   
