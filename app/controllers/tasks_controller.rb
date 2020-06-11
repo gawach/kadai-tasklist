@@ -13,6 +13,15 @@ class TasksController < ApplicationController
   end
   
   def create
+    @task = Task.new(task_params)
+    
+    if @task.save
+      flash[:success] = 'タスクが追加されました'
+      redirect_to @task
+    else
+      flash.now[:danger] = 'タスクが追加されませんでした'
+      render :new
+    end
   end
   
   def edit
@@ -26,8 +35,8 @@ class TasksController < ApplicationController
   
   
   private
-  
-  def message_params
-      params.require(:message).permit(:content)
+
+  def task_params
+      params.require(:task).permit(:content)
   end
 end
