@@ -11,10 +11,10 @@
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="<%= task_path %>" class="nav-link">Tasklist</a></li>
+      <li class="nav-item"><a href="<%= root_path %>" class="nav-link">Tasklist</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
     </ul>
-    <%= render 'tasks/tasks' tasks: @task %>
+    <%= render 'tasks/tasks', tasks: @tasks %>
   </div>
 </div>
