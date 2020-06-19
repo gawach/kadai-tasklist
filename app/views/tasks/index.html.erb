@@ -1,17 +1,8 @@
-<% if logged_in? %>
-  <div class="row">
-    <aside class="col-sm-4">
-      <%= render 'form', task: @task %>
-    </aside>
-    <div class="col-sm-8">
-      <%= render 'tasks/tasks', tasks: @tasks %>
-    </div>
+<div class="row">
+  <aside class="col-sm-4">
+    <%= render 'form', task: @task %>
+  </aside>
+  <div class="col-sm-8">
+    <%= render 'tasks/tasks', tasks: @tasks %>
   </div>
-<% else %>
-  <div class="center jumbotron">
-    <div class="text-center">
-      <h1>Welcome to the Tasklist</h1>
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
-    </div>
-  </div>
-<% end %>
+</div>
