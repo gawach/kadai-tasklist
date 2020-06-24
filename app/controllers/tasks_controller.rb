@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:edit, :update, :destroy ]
+  before_action :set_task, only: [:show, :edit, :update, :destroy ]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :require_user_logged_in
 
@@ -13,7 +13,6 @@ class TasksController < ApplicationController
   end
   
   def show
-    @task = Task.find_by(id: params[:id])
     if current_user != @task.user
       redirect_to root_url
     end
@@ -28,7 +27,7 @@ class TasksController < ApplicationController
     else
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'タスクが追加されませんでした'
-      render 'tasks/index'
+      render 'tasks/new'
     end
   end
   
@@ -63,7 +62,6 @@ class TasksController < ApplicationController
     end
     
     def correct_user
-      @task = current_user.tasks.find_by(id: params[:id])
       unless @task
         redirect_to root_url
       end
